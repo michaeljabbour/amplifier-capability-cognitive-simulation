@@ -1,0 +1,26 @@
+bundle:
+  name: cognitive-research-behavior
+  version: 0.1.0
+  description: Centaur human cognition prediction tool with expert simulation agent
+
+tools:
+  - module: tool-centaur
+    source: git+https://github.com/microsoft/amplifier-centaur@main#subdirectory=modules/tool-centaur
+    config:
+      # Default backend: remote REST API (vLLM / TGI / OpenAI-compatible)
+      # Override in your app settings.yaml for local GPU or CLI
+      backend:
+        type: rest_api
+        api_url: http://localhost:8000
+        api_key_env: CENTAUR_API_KEY
+        model_name: ""
+        timeout: 60
+      max_tokens: 16
+
+agents:
+  include:
+    - cognitive-research:cognition-simulator
+
+context:
+  include:
+    - cognitive-research:context/cognitive-research-instructions.md
