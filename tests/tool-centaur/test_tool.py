@@ -420,7 +420,6 @@ class TestToolMetadata:
         """TOOL_INPUT_SCHEMA has the expected top-level structure."""
         assert TOOL_INPUT_SCHEMA["type"] == "object"
         assert "properties" in TOOL_INPUT_SCHEMA
-        assert "oneOf" in TOOL_INPUT_SCHEMA
 
         props = TOOL_INPUT_SCHEMA["properties"]
         assert isinstance(props, dict)
@@ -430,20 +429,15 @@ class TestToolMetadata:
         assert "raw_prompt" in props
         assert "max_tokens" in props
 
-    def test_input_schema_oneof_modes(self) -> None:
-        """oneOf defines exactly two valid input modes."""
-        one_of = TOOL_INPUT_SCHEMA["oneOf"]
-        assert isinstance(one_of, list)
-        assert len(one_of) == 2
-
-        # Mode 1: structured
-        structured = one_of[0]
-        assert "experiment_description" in structured["required"]
-        assert "pending_trial" in structured["required"]
-
-        # Mode 2: raw
-        raw = one_of[1]
-        assert "raw_prompt" in raw["required"]
+    def test_input_schema_supports_both_modes(self) -> None:
+        """Schema properties cover both structured and raw input modes."""
+        props = TOOL_INPUT_SCHEMA["properties"]
+        # Structured mode fields
+        assert "experiment_description" in props
+        assert "pending_trial" in props
+        assert "prior_trials" in props
+        # Raw mode field
+        assert "raw_prompt" in props
 
 
 # =========================================================================

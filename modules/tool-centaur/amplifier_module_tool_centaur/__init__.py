@@ -97,11 +97,7 @@ TOOL_INPUT_SCHEMA: dict[str, object] = {
             "description": "Override the default max tokens to generate.",
         },
     },
-    # Exactly one of these groups must be provided.
-    "oneOf": [
-        {"required": ["experiment_description", "pending_trial"]},
-        {"required": ["raw_prompt"]},
-    ],
+    "required": [],
 }
 
 

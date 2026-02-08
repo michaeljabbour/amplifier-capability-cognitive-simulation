@@ -5,16 +5,14 @@ bundle:
 
 tools:
   - module: tool-centaur
-    source: git+https://github.com/microsoft/amplifier-centaur@main#subdirectory=modules/tool-centaur
+    source: git+https://github.com/michaeljabbour/amplifier-centaur@main#subdirectory=modules/tool-centaur
     config:
-      # Default backend: remote REST API (vLLM / TGI / OpenAI-compatible)
-      # Override in your app settings.yaml for local GPU or CLI
       backend:
         type: rest_api
         api_url: http://localhost:8000
-        api_key_env: CENTAUR_API_KEY
-        model_name: ""
-        timeout: 60
+        api_key_env: HF_TOKEN
+        model_name: marcelbinz/Llama-3.1-Centaur-70B
+        timeout: 120
       max_tokens: 16
 
 agents:
