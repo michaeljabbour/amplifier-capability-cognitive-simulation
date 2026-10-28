@@ -135,7 +135,7 @@ async def main() -> None:
     print("Stimulus         : big white square")
     print("True category    : K (rule: big = K)")
     print(f"Predicted choice : {result.output['predicted_choice']}")
-    print(f"Probability      : {result.output['probability']:.2%}")
+    print(f"Probability      : {format(result.output['probability'], '.2%') if result.output['probability'] is not None else 'unavailable'}")
     print(f"Alternatives     : {result.output['alternatives']}")
     print()
     print("Learning trajectory:")

@@ -177,6 +177,8 @@ When the user already has a formatted prompt:
 
 ## Interpreting Results
 
+A generated choice is not participant evidence. Missing log-probabilities are returned as null; report probability unavailable, never 100%. Available token probabilities are model predictions, not observed population rates. Historical confidence wording below applies only to actually supplied probabilities and does not establish calibration.
+
 The tool returns:
 - `predicted_choice`: The token the model predicts (e.g. "Q")
 - `probability`: Model confidence in that choice (0.0 to 1.0)

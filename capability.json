@@ -1,0 +1,94 @@
+{
+  "id": "cognitive-simulation",
+  "display_name": "Cognitive Simulation",
+  "kind": "skill",
+  "promise": "Compare a behavioral hypothesis with a model prediction—without calling it a real participant.",
+  "audience": "Researchers and product teams exploring explicit choice and learning hypotheses.",
+  "trigger": "Use when framing a behavioral simulation, interpreting Centaur output, or planning a comparison against real observations.",
+  "skill_path": "skills/cognitive-simulation",
+  "modes": [
+    {
+      "name": "Frame",
+      "when": "A behavioral question needs a falsifiable experiment.",
+      "output": "A choice task, task-domain fit assessment, label counterbalance, and a human-validation gap."
+    },
+    {
+      "name": "Simulate",
+      "when": "An authorized model endpoint and exact prompt are available.",
+      "output": "An attributed model prediction with actual probability availability and a reproducible prompt."
+    },
+    {
+      "name": "Compare",
+      "when": "Observed participant data exist.",
+      "output": "A preregistered held-out comparison with calibration and domain limits."
+    }
+  ],
+  "examples": [
+    {
+      "title": "A preference estimate without a probability",
+      "brief": "A fictional kiosk team compares two confirmation flows; a backend returns Q with no log-probabilities.",
+      "before": "The parser reports 100% and the team calls that a customer preference rate.",
+      "after": "Report choice Q, probability unavailable, exact prompt and backend; counterbalance labels and plan an observed task test before a product decision.",
+      "why": "A generated choice is not certainty, a participant, or an observed population rate.",
+      "fictional": true
+    }
+  ],
+  "boundaries": [
+    "A model prediction is not real participant evidence, consent, prevalence, or clinical advice.",
+    "Centaur serving, licensed weights, compute, endpoint credentials, and domain validation are optional runtime concerns.",
+    "The portable method can frame and critique a simulation without any model deployment."
+  ],
+  "install_commands": [
+    "python3 scripts/capability.py doctor",
+    "python3 scripts/capability.py install --dest ~/.agents/skills"
+  ],
+  "runtime_install_commands": [
+    "amplifier bundle add ./bundle.md"
+  ],
+  "verification": [
+    {
+      "name": "Centaur engine regression suite",
+      "command": "python -m pytest tests/tool-centaur -q",
+      "status": "passed",
+      "evidence": "164 tests. Mocked REST/CLI/backend protocol and prompt/result behavior; missing chosen-token probability is null, not 1.0. No Centaur model deployed or inference called.",
+      "expected": "The stated scope passes; no broader result inferred."
+    },
+    {
+      "name": "Portable packaging and install",
+      "command": "python3 scripts/capability.py build; python3 scripts/capability.py check; python3 scripts/capability.py doctor; python3 scripts/capability.py install --dest <temporary-parent> (twice)",
+      "status": "passed",
+      "expected": "Byte-identical canonical ZIP and isolated idempotent install.",
+      "evidence": "All operations passed. No runtime activation or effectiveness measured."
+    },
+    {
+      "name": "Skill discovery metadata",
+      "command": "<yaml-enabled-python> /path/to/skill-creator/scripts/quick_validate.py skills/cognitive-simulation",
+      "status": "passed",
+      "expected": "Valid required frontmatter, naming, and complete scaffold.",
+      "evidence": "Skill is valid. This is a structural check, not a behavioral benchmark."
+    }
+  ],
+  "sources": [
+    {
+      "repo": "amplifier-bundle-centaur",
+      "commit": "a01fbafef7dfeea7d57d55d45ae8b76a48b6bb74",
+      "paths": [
+        "agents/cognition-simulator.md",
+        "docs/CENTAUR_REFERENCE.md",
+        "modules/"
+      ],
+      "license": "MIT License",
+      "role": "Primary history and engine retained; methods consolidated behind the canonical portable entry."
+    }
+  ],
+  "consolidation": [],
+  "docs": [
+    "docs/INSTALL.md",
+    "docs/MIGRATION.md",
+    "docs/VALIDATION.md",
+    "docs/NATIVE-README.md",
+    "docs/evaluations/2026-10-28/consolidation.json"
+  ],
+  "evidence_summary": "This local candidate preserves the original source and evaluation assets. Packaging and native software checks are recorded separately from comparative usefulness. No outside-user outcome or renamed-method effectiveness claim is established.",
+  "publication_status": "Local release candidate. Source repositories and public URLs have not been changed."
+}

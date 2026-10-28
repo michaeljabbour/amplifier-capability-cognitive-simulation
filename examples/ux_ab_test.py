@@ -124,7 +124,7 @@ async def main() -> None:
     print(
         f"Predicted preference : Design {'A (minimal)' if result.output['predicted_choice'] == 'Q' else 'B (feature-rich)'}"
     )
-    print(f"Probability          : {result.output['probability']:.2%}")
+    print(f"Probability          : {format(result.output['probability'], '.2%') if result.output['probability'] is not None else 'unavailable'}")
     print(f"Alternative          : {result.output['alternatives']}")
     print()
     print("Interpretation: Given the prior preference pattern (2:1 for the")

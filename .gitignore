@@ -8,3 +8,9 @@ build/
 .DS_Store
 .research/
 amplifier-module-provider-*/
+
+# Capability build and local verification
+_site/
+.venv-capability/
+.capability-check/
+__pycache__/

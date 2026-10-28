@@ -60,7 +60,7 @@ class TestToolStructuredMode:
         assert result.success is True
         assert result.output is not None
         assert result.output["predicted_choice"] == "Q"
-        assert result.output["probability"] == 1.0
+        assert result.output["probability"] is None
         assert result.output["backend"] == "mock"
 
     @pytest.mark.asyncio

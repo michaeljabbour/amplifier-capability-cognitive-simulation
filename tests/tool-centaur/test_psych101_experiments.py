@@ -1288,7 +1288,7 @@ class TestCrossExperimentProperties:
         preds = parse_completion(completion)
         assert len(preds) == 1
         assert preds[0].choice == expected_choice
-        assert preds[0].probability == 1.0
+        assert preds[0].probability is None
 
     @pytest.mark.asyncio
     async def test_raw_and_structured_produce_equivalent_prompts(self) -> None:

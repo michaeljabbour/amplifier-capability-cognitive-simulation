@@ -1,0 +1,13 @@
+[
+  {
+    "repo": "amplifier-bundle-centaur",
+    "commit": "a01fbafef7dfeea7d57d55d45ae8b76a48b6bb74",
+    "paths": [
+      "agents/cognition-simulator.md",
+      "docs/CENTAUR_REFERENCE.md",
+      "modules/"
+    ],
+    "license": "MIT License",
+    "role": "Primary history and engine retained; methods consolidated behind the canonical portable entry."
+  }
+]

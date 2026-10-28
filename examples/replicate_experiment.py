@@ -175,7 +175,7 @@ async def main() -> None:
         choice_label = f"${immediate}" if choice == "Q" else f"${delayed}"
         print(
             f"{i:>5}  ${immediate:>9}  ${delayed:>9}  {delay_str:>8}  "
-            f"{choice_label:>8}  {prob:>9.1%}"
+            f"{choice_label:>8}  {format(prob, '>9.1%') if prob is not None else 'unavailable'}"
         )
 
         # Record this trial for context in the next prediction.

@@ -212,11 +212,11 @@ class TestParseCompletion:
     """Tests for result parsing."""
 
     def test_simple_completion(self) -> None:
-        """'Q>>.' extracts choice 'Q' with probability 1.0."""
+        """'Q>>.' extracts choice 'Q' without inventing a probability."""
         preds = parse_completion("Q>>.")
         assert len(preds) == 1
         assert preds[0].choice == "Q"
-        assert preds[0].probability == 1.0
+        assert preds[0].probability is None
         assert preds[0].alternatives == {}
 
     def test_completion_without_close(self) -> None:
@@ -273,9 +273,9 @@ class TestParseCompletion:
         assert "Z" in all_keys
 
     def test_none_log_probs(self) -> None:
-        """Explicitly passing None gives probability 1.0."""
+        """Explicitly passing None keeps probability unavailable."""
         preds = parse_completion("Q>>.", token_log_probs=None)
-        assert preds[0].probability == 1.0
+        assert preds[0].probability is None
         assert preds[0].alternatives == {}
 
 
@@ -308,3 +308,9 @@ class TestDataClasses:
         """CentaurPrediction.alternatives defaults to empty dict."""
         p = CentaurPrediction(choice="Q", probability=1.0)
         assert p.alternatives == {}
+
+
+def test_missing_choice_in_partial_distribution_is_unknown():
+    prediction = parse_completion("Q>>", {"Z": math.log(0.2)})[0]
+    assert prediction.probability is None
+    assert prediction.alternatives == {"Z": 0.2}

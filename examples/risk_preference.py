@@ -139,7 +139,7 @@ async def main() -> None:
     print(
         f"Predicted choice : {'Gamble (Q)' if result.output['predicted_choice'] == 'Q' else 'Sure thing (Z)'}"
     )
-    print(f"Probability      : {result.output['probability']:.2%}")
+    print(f"Probability      : {format(result.output['probability'], '.2%') if result.output['probability'] is not None else 'unavailable'}")
     print(f"Alternatives     : {result.output['alternatives']}")
     print()
     print("Interpretation: Despite the gamble having higher expected value")

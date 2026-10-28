@@ -73,14 +73,14 @@ class CentaurPrediction:
         The predicted response token (e.g. ``"Q"``, ``"K"``, ``"left"``).
     probability:
         The model's probability for *this* token, in [0, 1].
-        ``1.0`` when the backend did not return log-probs.
+        ``None`` when the backend did not return a probability for the choice.
     alternatives:
         Mapping of other candidate tokens to their probabilities, sorted
         descending.  Empty when log-probs are unavailable.
     """
 
     choice: str
-    probability: float
+    probability: float | None
     alternatives: dict[str, float] = field(default_factory=dict)
 
 
@@ -245,7 +245,7 @@ def parse_completion(
     Examples
     --------
     >>> parse_completion("Q>>.")
-    [CentaurPrediction(choice='Q', probability=1.0, alternatives={})]
+    [CentaurPrediction(choice='Q', probability=None, alternatives={})]
 
     >>> import math
     >>> preds = parse_completion(
@@ -264,14 +264,14 @@ def parse_completion(
 
     if token_log_probs is not None:
         probs = _logprobs_to_probs(token_log_probs)
-        top_prob = probs.get(choice, 0.0)
+        top_prob = probs.get(choice)
         alternatives = {
             k: v
             for k, v in sorted(probs.items(), key=lambda x: x[1], reverse=True)
             if k != choice
         }
     else:
-        top_prob = 1.0
+        top_prob = None
         alternatives = {}
 
     return [

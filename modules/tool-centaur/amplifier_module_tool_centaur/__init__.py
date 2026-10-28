@@ -272,7 +272,7 @@ class CentaurPredictTool:
                 success=True,
                 output={
                     "predicted_choice": top.choice if top else None,
-                    "probability": round(top.probability, 4) if top else None,
+                    "probability": round(top.probability, 4) if top and top.probability is not None else None,
                     "alternatives": (
                         {k: round(v, 4) for k, v in top.alternatives.items()}
                         if top

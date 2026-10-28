@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-28",
+  "status": "local conformance and native software checks",
+  "capability": "cognitive-simulation",
+  "primary_source_commit": "a01fbafef7dfeea7d57d55d45ae8b76a48b6bb74",
+  "sources": [
+    {
+      "repo": "amplifier-bundle-centaur",
+      "commit": "a01fbafef7dfeea7d57d55d45ae8b76a48b6bb74",
+      "paths": [
+        "agents/cognition-simulator.md",
+        "docs/CENTAUR_REFERENCE.md",
+        "modules/"
+      ],
+      "license": "MIT License",
+      "role": "Primary history and engine retained; methods consolidated behind the canonical portable entry."
+    }
+  ],
+  "checks": [
+    {
+      "name": "Centaur engine regression suite",
+      "command": "python -m pytest tests/tool-centaur -q",
+      "status": "passed",
+      "evidence": "164 tests. Mocked REST/CLI/backend protocol and prompt/result behavior; missing chosen-token probability is null, not 1.0. No Centaur model deployed or inference called.",
+      "expected": "The stated scope passes; no broader result inferred."
+    },
+    {
+      "name": "Portable packaging and install",
+      "command": "python3 scripts/capability.py build; python3 scripts/capability.py check; python3 scripts/capability.py doctor; python3 scripts/capability.py install --dest <temporary-parent> (twice)",
+      "status": "passed",
+      "expected": "Byte-identical canonical ZIP and isolated idempotent install.",
+      "evidence": "All operations passed. No runtime activation or effectiveness measured."
+    },
+    {
+      "name": "Skill discovery metadata",
+      "command": "<yaml-enabled-python> /path/to/skill-creator/scripts/quick_validate.py skills/cognitive-simulation",
+      "status": "passed",
+      "expected": "Valid required frontmatter, naming, and complete scaffold.",
+      "evidence": "Skill is valid. This is a structural check, not a behavioral benchmark."
+    }
+  ],
+  "limitations": [
+    "No new paid live inference, production activation, publication, or outside-user acceptance.",
+    "Fictional examples are authored illustrations, not observed outcomes.",
+    "Retained historical evaluation assets keep their original scope; renamed portable-method effectiveness is unmeasured."
+  ],
+  "changes": "Portable simulation limits and optional Centaur engine; probability availability repair."
+}

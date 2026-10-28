@@ -119,7 +119,7 @@ async def main() -> None:
 
     print("=== Temporal Discounting Prediction ===")
     print(f"Predicted choice : {result.output['predicted_choice']}")
-    print(f"Probability      : {result.output['probability']:.2%}")
+    print(f"Probability      : {format(result.output['probability'], '.2%') if result.output['probability'] is not None else 'unavailable'}")
     print(f"Alternatives     : {result.output['alternatives']}")
     print()
     print("Interpretation: The model predicts the participant will choose")
