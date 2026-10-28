@@ -89,6 +89,58 @@
     "docs/NATIVE-README.md",
     "docs/evaluations/2026-10-28/consolidation.json"
   ],
-  "evidence_summary": "This local candidate preserves the original source and evaluation assets. Packaging and native software checks are recorded separately from comparative usefulness. No outside-user outcome or renamed-method effectiveness claim is established.",
-  "publication_status": "Installation and evidence scopes are documented below."
+  "evidence_summary": "164 mocked engine regression tests cover prompt/result and backend behavior, including missing probabilities. No model deployment or new inference is part of this release, and no human-behavior accuracy claim is established.",
+  "publication_status": "Installation and evidence scopes are documented below.",
+  "marketing": {
+    "headline": "Explore a behavioral hypothesis before the study.",
+    "lead": "Frame a choice or learning task, record what a model predicts, and identify the observations needed to trust that prediction. Useful for preparing research questions and comparing explicit alternatives.",
+    "benefits": [
+      {
+        "title": "Make the question testable",
+        "body": "Name the population, task, alternatives and outcome, including the context the simulation leaves out."
+      },
+      {
+        "title": "Keep the prediction reproducible",
+        "body": "Freeze instructions, labels, prior trials, backend identity and analysis before comparing variants."
+      },
+      {
+        "title": "Know what remains to learn",
+        "body": "Separate model choice, available probabilities and actual participant evidence so a synthetic answer stays interpretable."
+      }
+    ],
+    "walkthrough": [
+      {
+        "title": "Frame a bounded task",
+        "detail": "Translate the decision into an explicit choice or sequence and assess its fit to the available model."
+      },
+      {
+        "title": "Run or leave a prepared experiment",
+        "detail": "Use an authorized compatible endpoint; without one, deliver the exact prompt and blocked inference step."
+      },
+      {
+        "title": "Compare against observations",
+        "detail": "Check label sensitivity and held-out human data before making a population claim."
+      }
+    ],
+    "use_when": [
+      "You need to turn a behavioral idea into a precise experiment.",
+      "You want to compare alternative prompts or task formulations.",
+      "A simulation result needs calibration against observed participant data."
+    ],
+    "not_for": [
+      "Replacing people in a usability study or claiming customer preference rates.",
+      "Predicting what a named individual will do, or treating absent log-probabilities as certainty."
+    ],
+    "quickstart_prompt": "Use Cognitive Simulation to frame a fictional kiosk confirmation study. Compare a single confirm button with a review-then-confirm flow. State task fit, counterbalance response labels, prepare exact prompts and define the observed-user check. Do not run an endpoint.",
+    "output_preview": "Fictional experiment: kiosk confirmation\nAlternatives: confirm / review then confirm\nLabels: counterbalanced across variants\nPrediction: pending compatible endpoint\nProbability: unavailable until returned\nHuman check: observed errors and task completion under a declared study",
+    "proof_summary": "164 mocked engine regression tests cover prompt/result and backend behavior, including missing probabilities. No model deployment or new inference is part of this release, and no human-behavior accuracy claim is established.",
+    "next_step": "Bring the decision, intended population and alternatives you want to compare.",
+    "example_note": "Fictional worked example. It illustrates the intended output; it is not a measured result or a real customer story.",
+    "install_notes": [
+      "Requires Git and Python 3.11+ for the repository installer. The portable method itself can be read by a compatible agent without a service or provider account.",
+      "The destination is a skills-parent folder. Use the discovery path supported by your agent; ~/.agents/skills is an example, not a universal host setting.",
+      "Keep the complete installed folder, references and license together. Identical reinstall is safe; conflicts are refused. A deliberate --replace keeps a dated backup."
+    ]
+  },
+  "repository_url": "https://github.com/michaeljabbour/amplifier-skill-cognitive-simulation"
 }

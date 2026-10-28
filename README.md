@@ -1,33 +1,68 @@
 # Cognitive Simulation
 
-Compare a behavioral hypothesis with a model prediction—without calling it a real participant.
+Explore a behavioral hypothesis before the study.
 
-Researchers and product teams exploring explicit choice and learning hypotheses. Use when framing a behavioral simulation, interpreting Centaur output, or planning a comparison against real observations.
+Frame a choice or learning task, record what a model predicts, and identify the observations needed to trust that prediction. Useful for preparing research questions and comparing explicit alternatives.
 
-## Install the portable method
+[Explore the site](https://michaeljabbour.github.io/amplifier-skill-cognitive-simulation/) · [Read the method](skills/cognitive-simulation/SKILL.md) · [Install guide](docs/INSTALL.md)
+
+## What you get
+
+- **Make the question testable.** Name the population, task, alternatives and outcome, including the context the simulation leaves out.
+- **Keep the prediction reproducible.** Freeze instructions, labels, prior trials, backend identity and analysis before comparing variants.
+- **Know what remains to learn.** Separate model choice, available probabilities and actual participant evidence so a synthetic answer stays interpretable.
+
+## Install and try it
+
+Requires Git and Python 3.11+. Run these commands from a terminal:
 
 ```sh
+git clone https://github.com/michaeljabbour/amplifier-skill-cognitive-simulation.git
+cd amplifier-skill-cognitive-simulation
 python3 scripts/capability.py doctor
 python3 scripts/capability.py install --dest ~/.agents/skills
 ```
 
-Keep the complete `skills/cognitive-simulation` folder together. Installation copies only that method, references, and license; it starts no service and installs no runtime. Use a different skills-parent path for your host.
+The installer copies `skills/cognitive-simulation` as a complete folder into your chosen skills parent. Use the discovery path supported by your agent. It starts no service and configures no provider. Restart or refresh skill discovery in your host, then ask:
 
-## Choose the mode
+```text
+Use Cognitive Simulation to frame a fictional kiosk confirmation study. Compare a single confirm button with a review-then-confirm flow. State task fit, counterbalance response labels, prepare exact prompts and define the observed-user check. Do not run an endpoint.
+```
 
-- **Frame** — A behavioral question needs a falsifiable experiment. A choice task, task-domain fit assessment, label counterbalance, and a human-validation gap.
-- **Simulate** — An authorized model endpoint and exact prompt are available. An attributed model prediction with actual probability availability and a reproducible prompt.
-- **Compare** — Observed participant data exist. A preregistered held-out comparison with calibration and domain limits.
+If your agent does not discover installed skills, point it directly at the complete folder and ask it to read `SKILL.md`. Reading the method needs no Python runtime. [Installation details](docs/INSTALL.md) cover conflict handling and optional native execution.
 
-## What was consolidated
+## How the work proceeds
+
+1. **Frame a bounded task.** Translate the decision into an explicit choice or sequence and assess its fit to the available model.
+2. **Run or leave a prepared experiment.** Use an authorized compatible endpoint; without one, deliver the exact prompt and blocked inference step.
+3. **Compare against observations.** Check label sensitivity and held-out human data before making a population claim.
+
+## Example output
+
+Fictional worked example. It illustrates the intended output; it is not a measured result or a real customer story.
+
+```text
+Fictional experiment: kiosk confirmation
+Alternatives: confirm / review then confirm
+Labels: counterbalanced across variants
+Prediction: pending compatible endpoint
+Probability: unavailable until returned
+Human check: observed errors and task completion under a declared study
+```
+
+## What is checked
+
+164 mocked engine regression tests cover prompt/result and backend behavior, including missing probabilities. No model deployment or new inference is part of this release, and no human-behavior accuracy claim is established. See [validation](docs/VALIDATION.md) for the exact checks and limits.
+
+## Retained implementation and references
 
 [Migration map](docs/MIGRATION.md) records the original source paths and current roles. Primary Git history, native engines, tests, examples, and evaluation assets remain in this checkout. [Native guide](docs/NATIVE-README.md) preserves the original project documentation; old install URLs and runtime claims there are historical and need current verification. [Validation](docs/VALIDATION.md) records actual checks and limits.
 
-## Build the local site
+## Build the site
 
 ```sh
 python3 scripts/capability.py build
 python3 scripts/capability.py check
 ```
 
-Open `_site/index.html` or serve `_site` with a local static server. The downloadable ZIP is built from canonical method bytes. The fictional before/after example illustrates intended judgment; it is not a measured improvement. Nothing has been published or renamed remotely.
+The static site includes a ZIP built from the canonical method, references and license. Runtime and provider setup remain separate from installing the portable method.
