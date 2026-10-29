@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-29",
+  "issue": "The UX example interpreted fixed mocked next-token probabilities as human preference rates.",
+  "changes": [
+    "Label the backend, completion, probabilities and invented history as a software fixture.",
+    "Remove population-percentage and unsupported cognitive-law/satisfaction interpretation.",
+    "Keep missing probabilities unavailable."
+  ],
+  "checks": [
+    "Actual example with fixed mock distribution and with missing log-probabilities: passed; no percentages or participant-rate claim.",
+    "164 native tool/backend/prompt tests passed on Python3.12.",
+    "Site build, link/download check, JavaScript syntax and empty portable install passed."
+  ],
+  "limits": "No model call, real participant observation or accuracy/effectiveness result; film assets unchanged."
+}

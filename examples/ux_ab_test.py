@@ -1,27 +1,17 @@
 #!/usr/bin/env python3
 """
-UX A/B Test: Predict which UI design users would prefer.
+Fictional UX choice task: inspect a mocked next-token distribution.
 
-Cognitive science background
-----------------------------
-A/B testing in UX design is fundamentally a preference-elicitation task --
-the same class of problem that the Psych-101 dataset covers extensively
-through risky-choice, temporal-discounting, and similarity-judgement
-experiments.  Centaur learns general patterns of human preference from
-60,000+ participants, making it useful for *pre-screening* design options
-before running a live A/B test.
+This example exercises prompt construction and output parsing without a model,
+endpoint or real participant. The three prior responses are invented fixture
+history. MockBackend supplies the completion and probabilities; they were not
+estimated from people or produced by a deployed Centaur model.
 
-This is NOT a replacement for real user testing.  It is a fast, cheap way
-to generate hypotheses: "Centaur predicts 70% of users will prefer Design A
-over Design B.  Let's validate that with a live test focused on these two
-finalists instead of testing all five candidates."
-
-This example
-------------
-We frame a UX preference task using the same two-alternative forced-choice
-format that Psych-101 uses for risky-choice experiments.  Three prior
-"participants" have already stated preferences, and we predict what the
-fourth participant will choose.
+The task uses two alternative interface descriptions and arbitrary Q/Z labels.
+Its output can help inspect the software contract. It cannot establish design
+preference, user satisfaction or a population percentage. A behavioral hypothesis
+would need a configured model, label/wording sensitivity checks and a declared
+comparison with held-out observations from actual participants.
 
 Usage:
     python examples/ux_ab_test.py
@@ -51,7 +41,7 @@ from amplifier_module_tool_centaur.backends import BackendResult  # noqa: E402
 
 
 class MockBackend:
-    """Simulates a Centaur prediction for the UX scenario."""
+    """Returns fixed synthetic outputs for a software-only plumbing check."""
 
     async def predict(self, prompt: str, max_tokens: int = 16) -> BackendResult:
         return BackendResult(
@@ -79,7 +69,7 @@ async def main() -> None:
     tool = CentaurPredictTool(backend=MockBackend())
 
     # Frame the UX A/B test as a Psych-101-style two-alternative choice.
-    # Each "trial" is one participant's preference judgement.
+    # Each prior response is invented fixture history, not participant data.
     result = await tool.execute(
         {
             "experiment_description": (
@@ -120,21 +110,23 @@ async def main() -> None:
         }
     )
 
-    print("=== UX A/B Test Prediction ===")
-    print(
-        f"Predicted preference : Design {'A (minimal)' if result.output['predicted_choice'] == 'Q' else 'B (feature-rich)'}"
-    )
-    print(f"Probability          : {format(result.output['probability'], '.2%') if result.output['probability'] is not None else 'unavailable'}")
-    print(f"Alternative          : {result.output['alternatives']}")
+    print("=== Fictional UX choice task: mock backend ===")
+    print(f"Backend             : {result.output['backend']}")
+    print(f"Mock completion     : {result.output['predicted_choice']}")
+    probability = result.output['probability']
+    probability_text = format(probability, ".4f") if probability is not None else "unavailable"
+    print(f"Mock token probability: {probability_text}")
+    print(f"Mock alternatives   : {result.output['alternatives']}")
     print()
-    print("Interpretation: Given the prior preference pattern (2:1 for the")
-    print("minimal design), the model predicts the next participant is ~67%")
-    print("likely to also prefer the clean, minimal layout.  This aligns")
-    print("with well-known UX research on cognitive load and Hick's Law --")
-    print("fewer choices per screen generally leads to higher satisfaction.")
+    print("Interpretation: the mock supplies a Q completion and a next-token")
+    print("distribution for this exact fictional prompt. No model ran and the")
+    print("prior responses are invented. This is a software check, not a")
+    print("calibrated probability about a person or a population preference rate.")
     print()
-    print("Next step: Run a live A/B test with real users to validate this")
-    print("prediction before committing to Design A.")
+    print("Next step: configure and identify the actual model, counterbalance")
+    print("labels and wording, then compare its predictions with held-out")
+    print("observations under a declared participant study before making a")
+    print("claim about interface preference.")
 
 
 if __name__ == "__main__":

@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-29 — Evidence wording correction
+
+- Correct the UX choice example to label its backend, invented history and next-token probabilities as a mocked software check. Remove population-rate and unsupported human-preference interpretations; no model or participant study ran.
+- Preserve film assets and their published limit notes.
+
+
 ## 2026-10-29 — Film
 
 - Add a 74-second film to the site, with captions, a transcript, a poster and a 15-second cut. The example in it is fictional, and it reports no results.
