@@ -2,6 +2,8 @@
 
 Explore a behavioral hypothesis before the study.
 
+Watch the [74-second film](https://michaeljabbour.github.io/amplifier-skill-cognitive-simulation/#film): a model answer mistaken for a customer, and how the skill keeps a prediction from standing in for a study. The example in it is fictional.
+
 Frame a choice or learning task, record what a model predicts, and identify the observations needed to trust that prediction. Useful for preparing research questions and comparing explicit alternatives.
 
 [Explore the site](https://michaeljabbour.github.io/amplifier-skill-cognitive-simulation/) · [Read the method](skills/cognitive-simulation/SKILL.md) · [Install guide](docs/INSTALL.md)

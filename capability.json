@@ -142,5 +142,12 @@
       "Keep the complete installed folder, references and license together. Identical reinstall is safe; conflicts are refused. A deliberate --replace keeps a dated backup."
     ]
   },
-  "repository_url": "https://github.com/michaeljabbour/amplifier-skill-cognitive-simulation"
+  "repository_url": "https://github.com/michaeljabbour/amplifier-skill-cognitive-simulation",
+  "film": {
+    "file": "cognitive-simulation-film",
+    "seconds": 74,
+    "heading": "A prediction is not a person.",
+    "blurb": "In 74 seconds, Dowel, a wooden stand-in, takes a model’s answer for a customer: it picks option Q and a parser prints one hundred percent. Cognitive Simulation frames the choice first, freezes two prompts with the letters swapped so a label can’t decide, and reports probability as unavailable instead of one hundred. No model ran for this release, and accuracy about people is unmeasured. Captions are on the player; a transcript is below.",
+    "note": "The cinema kiosk and the experiment are a fictional example. The film shows how the skill behaves; it does not report results."
+  }
 }

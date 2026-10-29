@@ -1,0 +1,46 @@
+WEBVTT
+
+00:00:00.300 --> 00:00:02.450
+You’re building a ticket kiosk.
+
+00:00:02.820 --> 00:00:04.620
+Dowel stands in for customers.
+
+00:00:05.720 --> 00:00:10.470
+You want to know which flow people prefer: one tap, or review first.
+
+00:00:11.430 --> 00:00:12.650
+A model picks option Q.
+
+00:00:12.670 --> 00:00:16.460
+The parser prints one hundred percent.
+
+00:00:19.670 --> 00:00:24.720
+Cognitive Simulation treats that answer as a prediction, not a customer.
+
+00:00:25.390 --> 00:00:31.600
+It frames the choice: who decides, what counts as success, what the task leaves out.
+
+00:00:33.880 --> 00:00:38.570
+It freezes two prompts with the letters swapped, so a label can’t decide.
+
+00:00:40.470 --> 00:00:42.400
+Both prompts pick option Q.
+
+00:00:42.750 --> 00:00:44.940
+The letter chose, not the flow.
+
+00:00:45.470 --> 00:00:48.640
+Probability: unavailable, not one hundred.
+
+00:00:49.330 --> 00:00:54.200
+No model ran for this release, and accuracy about people is unmeasured.
+
+00:00:54.470 --> 00:00:57.010
+You still run the study.
+
+00:01:06.160 --> 00:01:07.030
+Cognitive Simulation.
+
+00:01:07.620 --> 00:01:10.930
+Explore a behavioral hypothesis before the study.

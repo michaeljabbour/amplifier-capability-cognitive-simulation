@@ -1,0 +1,10 @@
+You’re building a ticket kiosk. Dowel stands in for customers.
+You want to know which flow people prefer: one tap, or review first.
+A model picks option Q. The parser prints one hundred percent.
+Cognitive Simulation treats that answer as a prediction, not a customer.
+It frames the choice: who decides, what counts as success, what the task leaves out.
+It freezes two prompts with the letters swapped, so a label can’t decide.
+Both prompts pick option Q. The letter chose, not the flow. Probability: unavailable, not one hundred.
+No model ran for this release, and accuracy about people is unmeasured. You still run the study.
+On screen: A prediction is not a person.
+Cognitive Simulation. Explore a behavioral hypothesis before the study.
