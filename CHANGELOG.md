@@ -1,5 +1,9 @@
 # Changelog
 
+## Local repair — 2026-10-30
+
+- Offer film sources, download links and fallback links only for media formats present in the repository; support WebM-only film bundles without advertising missing MP4 files.
+
 ## 2026-10-29 — Evidence wording correction
 
 - Correct the UX choice example to label its backend, invented history and next-token probabilities as a mocked software check. Remove population-rate and unsupported human-preference interpretations; no model or participant study ran.

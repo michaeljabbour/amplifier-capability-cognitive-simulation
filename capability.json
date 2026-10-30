@@ -2,7 +2,7 @@
   "id": "cognitive-simulation",
   "display_name": "Cognitive Simulation",
   "kind": "skill",
-  "promise": "Compare a behavioral hypothesis with a model prediction—without calling it a real participant.",
+  "promise": "Compare a behavioral hypothesis with a model prediction\u2014without calling it a real participant.",
   "audience": "Researchers and product teams exploring explicit choice and learning hypotheses.",
   "trigger": "Use when framing a behavioral simulation, interpreting Centaur output, or planning a comparison against real observations.",
   "skill_path": "skills/cognitive-simulation",
@@ -142,12 +142,95 @@
       "Keep the complete installed folder, references and license together. Identical reinstall is safe; conflicts are refused. A deliberate --replace keeps a dated backup."
     ]
   },
-  "repository_url": "https://github.com/michaeljabbour/amplifier-skill-cognitive-simulation",
+  "repository_url": "https://github.com/michaeljabbour/amplifier-capability-cognitive-simulation",
   "film": {
     "file": "cognitive-simulation-film",
     "seconds": 74,
     "heading": "A prediction is not a person.",
-    "blurb": "In 74 seconds, Dowel, a wooden stand-in, takes a model’s answer for a customer: it picks option Q and a parser prints one hundred percent. Cognitive Simulation frames the choice first, freezes two prompts with the letters swapped so a label can’t decide, and reports probability as unavailable instead of one hundred. No model ran for this release, and accuracy about people is unmeasured. Captions are on the player; a transcript is below.",
+    "blurb": "In 74 seconds, Dowel, a wooden stand-in, takes a model\u2019s answer for a customer: it picks option Q and a parser prints one hundred percent. Cognitive Simulation frames the choice first, freezes two prompts with the letters swapped so a label can\u2019t decide, and reports probability as unavailable instead of one hundred. No model ran for this release, and accuracy about people is unmeasured. Captions are on the player; a transcript is below.",
     "note": "The cinema kiosk and the experiment are a fictional example. The film shows how the skill behaves; it does not report results."
-  }
+  },
+  "name": "amplifier-capability-cognitive-simulation",
+  "legacy_names": [
+    "amplifier-skill-cognitive-simulation",
+    "cognitive-simulation"
+  ],
+  "contract_version": "amplifier-capability/v1",
+  "version": null,
+  "version_basis": "No release version recorded; installer requires a full Git revision pin.",
+  "engine": "Both",
+  "engine_components": {
+    "caller_method": "Both"
+  },
+  "surfaces": [
+    "agent-skills",
+    "amplifier-bundle"
+  ],
+  "portable_method": {
+    "name": "cognitive-simulation",
+    "path": "skills/cognitive-simulation",
+    "include": [
+      "."
+    ],
+    "contract": "Agent Skills directory; caller applies the method; no independent execution loop is installed."
+  },
+  "interfaces": {
+    "portable": {
+      "input": "Caller task and explicitly authorized context",
+      "output": "Compare a behavioral hypothesis with a model prediction\u2014without calling it a real participant.",
+      "failure": "Report insufficient evidence, unsupported context or host limitation; never turn discovery into an execution claim."
+    },
+    "native": {
+      "distribution": null,
+      "entrypoints": {},
+      "docs": [
+        "docs/INSTALL.md",
+        "docs/MIGRATION.md",
+        "docs/VALIDATION.md",
+        "docs/NATIVE-README.md",
+        "docs/evaluations/2026-10-28/consolidation.json"
+      ],
+      "status": "Existing declared entrypoints preserved; runtime signatures, service access and installation tests remain separate evidence."
+    },
+    "host_adapters": {
+      "amplifier_bundle": "bundle.md",
+      "grants_autonomy": false
+    }
+  },
+  "permissions": {
+    "installation": {
+      "network": false,
+      "executes_capability_code": false,
+      "writes": [
+        "Selected discovery folders",
+        ".capability-state transaction backups"
+      ],
+      "grants_runtime_permissions": false
+    },
+    "runtime": {
+      "status": "Host/caller authorizes each operation; installation is not a tool allowlist or standing approval.",
+      "declared_boundaries": [
+        "A model prediction is not real participant evidence, consent, prevalence, or clinical advice.",
+        "Centaur serving, licensed weights, compute, endpoint credentials, and domain validation are optional runtime concerns.",
+        "The portable method can frame and critique a simulation without any model deployment."
+      ]
+    },
+    "secret_names": {
+      "discovery_requires": [],
+      "native_runtime_inventory": "See native documentation; no credentials are bundled or inferred."
+    }
+  },
+  "dataflow": {
+    "installation": "Read pinned tracked portable source and copy locally with SHA-256 receipts. No source text is transmitted.",
+    "method": "Caller supplies authorized context; existing promise and boundaries govern output.",
+    "native_runtime": "Provider/network/storage flows are owned by native interfaces and host authorization; these files do not enable them."
+  },
+  "source_policy": {
+    "revision": "Explicit full40-character Git commit required at installation; never infer latest.",
+    "repository_rename": "Public identity may change; skill folder, imports, entrypoints, tool IDs and schemas remain stable.",
+    "research": ".research/market remains local and ignored; AGENTS governs refresh."
+  },
+  "repository_aliases": [
+    "https://github.com/michaeljabbour/amplifier-skill-cognitive-simulation"
+  ]
 }
