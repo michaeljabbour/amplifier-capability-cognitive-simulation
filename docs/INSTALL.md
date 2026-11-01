@@ -5,8 +5,8 @@
 Requires Git and Python 3.11+. From a terminal:
 
 ```sh
-git clone https://github.com/michaeljabbour/amplifier-skill-cognitive-simulation.git
-cd amplifier-skill-cognitive-simulation
+git clone https://github.com/michaeljabbour/amplifier-capability-cognitive-simulation.git
+cd amplifier-capability-cognitive-simulation
 python3 scripts/capability.py doctor
 python3 scripts/capability.py install --dest ~/.agents/skills
 ```

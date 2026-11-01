@@ -2,11 +2,11 @@
 
 Explore a behavioral hypothesis before the study.
 
-Watch the [74-second film](https://michaeljabbour.github.io/amplifier-skill-cognitive-simulation/#film): a model answer mistaken for a customer, and how the skill keeps a prediction from standing in for a study. The example in it is fictional.
+Watch the [74-second film](https://michaeljabbour.github.io/amplifier-capability-cognitive-simulation/#film): a model answer mistaken for a customer, and how the skill keeps a prediction from standing in for a study. The example in it is fictional.
 
 Frame a choice or learning task, record what a model predicts, and identify the observations needed to trust that prediction. Useful for preparing research questions and comparing explicit alternatives.
 
-[Explore the site](https://michaeljabbour.github.io/amplifier-skill-cognitive-simulation/) · [Read the method](skills/cognitive-simulation/SKILL.md) · [Install guide](docs/INSTALL.md)
+[Explore the site](https://michaeljabbour.github.io/amplifier-capability-cognitive-simulation/) · [Read the method](skills/cognitive-simulation/SKILL.md) · [Install guide](docs/INSTALL.md)
 
 ## What you get
 
@@ -19,8 +19,8 @@ Frame a choice or learning task, record what a model predicts, and identify the 
 Requires Git and Python 3.11+. Run these commands from a terminal:
 
 ```sh
-git clone https://github.com/michaeljabbour/amplifier-skill-cognitive-simulation.git
-cd amplifier-skill-cognitive-simulation
+git clone https://github.com/michaeljabbour/amplifier-capability-cognitive-simulation.git
+cd amplifier-capability-cognitive-simulation
 python3 scripts/capability.py doctor
 python3 scripts/capability.py install --dest ~/.agents/skills
 ```
