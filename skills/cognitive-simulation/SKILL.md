@@ -31,3 +31,7 @@ Report the model choice and available distribution as predictions. Evaluate sens
 ## Output
 
 Return scenario; task fit and omitted context; exact experiment/prompt; backend identity; prediction or blocked status; probability availability; sensitivity checks; what actual observations support; limitations; and the smallest participant-based check that could change the decision. Never say a synthetic preference establishes what a specific person or customer segment will do.
+
+## Optional coaching checkpoint
+
+Read [the local coaching guide](references/coaching-session.v1.md) only when the person asks for practice or optional session bookkeeping. Keep direct artifact production available; agree a small budget, preserve the baseline and stop on goal, user exit or no meaningful gain.
