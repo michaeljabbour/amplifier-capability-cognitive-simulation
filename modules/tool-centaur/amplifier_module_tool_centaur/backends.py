@@ -252,7 +252,9 @@ class CliBackend:
     command : str
         Shell command template.
     timeout : int
-        Subprocess timeout in seconds.
+        Subprocess timeout in seconds. Timeout or caller cancellation stops
+        the process group created for the command on POSIX. Other platforms
+        stop the direct shell process; descendant cleanup is not guaranteed.
     """
 
     def __init__(self, command: str, timeout: int = 120) -> None:
@@ -262,31 +264,46 @@ class CliBackend:
     async def predict(self, prompt: str, max_tokens: int = 16) -> BackendResult:
         import asyncio
         import json
+        import signal
         import tempfile
 
-        # Write prompt to a temp file the script can read.
-        with tempfile.NamedTemporaryFile(mode="w", suffix=".txt", delete=False) as pf:
-            pf.write(prompt)
-            prompt_file = pf.name
-
-        with tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False) as of:
-            output_file = of.name
-
-        cmd = self.command.format(
-            prompt_file=prompt_file,
-            output_file=output_file,
-            max_tokens=max_tokens,
-        )
-
+        prompt_file: str | None = None
+        output_file: str | None = None
         try:
+            # Include creation and template formatting in the cleanup boundary.
+            with tempfile.NamedTemporaryFile(mode="w", suffix=".txt", delete=False) as pf:
+                prompt_file = pf.name
+                pf.write(prompt)
+
+            with tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False) as of:
+                output_file = of.name
+
+            cmd = self.command.format(
+                prompt_file=prompt_file,
+                output_file=output_file,
+                max_tokens=max_tokens,
+            )
             proc = await asyncio.create_subprocess_shell(
                 cmd,
                 stdout=asyncio.subprocess.PIPE,
                 stderr=asyncio.subprocess.PIPE,
+                start_new_session=(os.name == "posix"),
             )
-            _stdout, stderr = await asyncio.wait_for(
-                proc.communicate(), timeout=self.timeout
-            )
+            try:
+                _stdout, stderr = await asyncio.wait_for(
+                    proc.communicate(), timeout=self.timeout
+                )
+            except (asyncio.TimeoutError, asyncio.CancelledError):
+                try:
+                    if os.name == "posix":
+                        # The session belongs to this command, never the host.
+                        os.killpg(proc.pid, signal.SIGKILL)
+                    elif proc.returncode is None:
+                        proc.kill()
+                except ProcessLookupError:
+                    pass  # It exited between the timeout and cleanup.
+                await proc.communicate()
+                raise
 
             if proc.returncode != 0:
                 raise RuntimeError(
@@ -312,6 +329,8 @@ class CliBackend:
         finally:
             # Clean up temp files regardless of success/failure.
             for path in (prompt_file, output_file):
+                if path is None:
+                    continue
                 try:
                     os.unlink(path)
                 except OSError:
